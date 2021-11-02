@@ -62,13 +62,12 @@ app.get("/users", authHandler, function (req: any, res) {
     });
 });
 app.post("/create-user", function (req, res) {
-  const { name, email, username, password } = req.body;
+  const { name, email, password } = req.body;
 
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(password, salt, function (err, hash) {
       const user = new UserModel({
         name,
-        username,
         email,
         password: hash,
       });

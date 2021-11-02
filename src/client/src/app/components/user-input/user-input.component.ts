@@ -30,10 +30,6 @@ export class UserInputComponent implements OnInit, OnChanges {
         '',
         Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
-      username: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(3)]),
-      ],
       password: [
         '',
         Validators.compose([Validators.required, Validators.minLength(5)]),
@@ -48,7 +44,6 @@ export class UserInputComponent implements OnInit, OnChanges {
       const user = changes?.selectedUser?.currentValue;
       this.addUser.get('name')?.setValue(user.name);
       this.addUser.get('email')?.setValue(user.email);
-      this.addUser.get('username')?.setValue(user.username);
       this.addUser.updateValueAndValidity();
     }
   }
