@@ -16,11 +16,11 @@ import {
 import { User } from '../../../../../shared/models/user.model';
 
 @Component({
-  selector: 'app-user-input',
-  templateUrl: './user-input.component.html',
-  styleUrls: ['./user-input.component.scss'],
+  selector: 'app-user-signup',
+  templateUrl: './user-signup.component.html',
+  styleUrls: ['./user-signup.component.scss'],
 })
-export class UserInputComponent implements OnInit, OnChanges {
+export class UserSignupComponent implements OnInit, OnChanges {
   addUser: FormGroup;
   @Input() selectedUser: User | null = null;
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
@@ -58,6 +58,6 @@ export class UserInputComponent implements OnInit, OnChanges {
   }
 
   login() {
-    this.store.dispatch(loginUser({ data: this.addUser.value }))
+    this.store.dispatch(loginUser({ data: this.addUser.value }));
   }
 }

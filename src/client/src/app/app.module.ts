@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
-import { UserInputComponent } from './components/user-input/user-input.component';
+import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -23,7 +23,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   declarations: [
     AppComponent,
     UsersListComponent,
-    UserInputComponent,
+    UserSignupComponent,
     PageUsersComponent,
     PageLoginComponent
   ],
