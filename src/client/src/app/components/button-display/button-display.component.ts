@@ -106,6 +106,11 @@ export class ButtonDisplayComponent implements OnInit {
     this.toggleClass6 = false;
   }
 
+  clearResultString() {
+    this.resultString = ''
+    this.resultArray = []
+  }
+
   switchTranslationType() {
     if (this.translationType == 'Numbers') {
       this.translationType = 'Letters';

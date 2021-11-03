@@ -54,6 +54,11 @@
 
 <br />
 
-
-
-<h1>{{ resultString }}</h1>
+<div *ngIf="resultString" class="card">
+  <div class="card-header">Translation</div>
+  <div class="card-body">
+    <p>{{resultString}}</p>
+  </div>
+<button mat-button>Save</button>
+<button mat-button (click)="clearResultString()">X</button>
+</div>

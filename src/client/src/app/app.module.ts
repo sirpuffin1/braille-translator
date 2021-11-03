@@ -20,6 +20,9 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { ButtonDisplayComponent } from './components/button-display/button-display.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card'
+import { MatButtonModule } from '@angular/material/button'
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -46,6 +49,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     EffectsModule.forRoot([UserEffects]),
     SocketIoModule.forRoot(config),
+    MatCardModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
