@@ -1,0 +1,59 @@
+<img style="float: right;" src="https://www.dcode.fr/tools/braille/images/braille.png">
+
+<button
+  (click)="toggleClass1 = !toggleClass1"
+  [ngClass]="{ selected: toggleClass1 }"
+  (click)="pushToArray('1')"
+>
+
+
+</button>
+
+<button
+  (click)="toggleClass2 = !toggleClass2"
+  [ngClass]="{ selected: toggleClass2 }"
+  (click)="pushToArray('2')"
+>
+
+</button>
+<br />
+<button
+  (click)="toggleClass3 = !toggleClass3"
+  [ngClass]="{ selected: toggleClass3 }"
+  (click)="pushToArray('3')"
+>
+
+</button>
+<button
+  (click)="toggleClass4 = !toggleClass4"
+  [ngClass]="{ selected: toggleClass4 }"
+  (click)="pushToArray('4')"
+>
+
+</button>
+<br />
+<button
+  (click)="toggleClass5 = !toggleClass5"
+  [ngClass]="{ selected: toggleClass5 }"
+  (click)="pushToArray('5')"
+>
+
+</button>
+<button
+  (click)="toggleClass6 = !toggleClass6"
+  [ngClass]="{ selected: toggleClass6 }"
+  (click)="pushToArray('6')"
+
+>
+
+</button>
+<br />
+<button (click)="displayResult()">submit</button>
+<button (click)="switchTranslationType()">{{translationType}}</button>
+
+
+<br />
+
+
+
+<h1>{{ resultString }}</h1>

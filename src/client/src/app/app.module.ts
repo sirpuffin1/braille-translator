@@ -18,6 +18,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PageSignupComponent } from './pages/page-signup/page-signup.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
+import { ButtonDisplayComponent } from './components/button-display/button-display.component';
+import { PageHomeComponent } from './pages/page-home/page-home.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -29,7 +31,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PageUsersComponent,
     PageSignupComponent,
     UserLoginComponent,
-    PageLoginComponent
+    PageLoginComponent,
+    ButtonDisplayComponent,
+    PageHomeComponent
   ],
   imports: [
     BrowserModule,
