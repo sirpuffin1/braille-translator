@@ -6,11 +6,11 @@ import { selectedUserSelector } from 'src/app/store/selectors/user/user.selector
 import { User } from '../../../../../shared/models/user.model';
 
 @Component({
-  selector: 'app-page-login',
-  templateUrl: './page-login.component.html',
-  styleUrls: ['./page-login.component.scss']
+  selector: 'app-page-signup',
+  templateUrl: './page-signup.component.html',
+  styleUrls: ['./page-signup.component.scss']
 })
-export class PageLoginComponent implements OnInit {
+export class PageSignupComponent implements OnInit {
   selectedUser$: Observable<User | null>;
   constructor(
     private store: Store<AppState>,
