@@ -1,10 +1,45 @@
 button {
   height: 100px;
   width:100px;
+  border-radius:50%;
+  box-shadow: 2px 3px grey;
 }
 
 .selected {
   background-color: black;
 }
 
+.cardo {
+  display: inline-flex;
+}
+
+span {
+
+  flex-direction: row;
+}
+
+p {
+  font-size: 75px;
+  font-stretch: expanded;
+}
+
+.brailles {
+  height: 70px;
+  border: 2px solid grey;
+}
+
+.mats {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  border-radius: 0%;
+}
+
+.mats:hover {
+  background-color: white;
+}
+button:hover {
+  background-color:
+  #303030
+}
 

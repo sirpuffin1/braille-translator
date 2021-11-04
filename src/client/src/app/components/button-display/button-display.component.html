@@ -47,18 +47,23 @@
 >
 
 </button>
-<br />
+<br>
 <button (click)="displayResult()">submit</button>
 <button (click)="switchTranslationType()">{{translationType}}</button>
 
 
 <br />
 
-<div *ngIf="resultString" class="card">
+
+<div *ngIf="resultString">
   <div class="card-header">Translation</div>
-  <div class="card-body">
-    <p>{{resultString}}</p>
-  </div>
-<button mat-button>Save</button>
-<button mat-button (click)="clearResultString()">X</button>
+<p>{{resultString}}</p>
+  <span  class="cardo" *ngFor="let stringValue of resultArray">
+    <div><img class="brailles" src="./assets/images/{{stringValue}}.png"></div>
+
+  </span>
+  <br>
+  <button mat-button class="mats">Save</button>
+  <button mat-button class="mats"(click)="clearResultString()">X</button>
 </div>
+

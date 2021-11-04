@@ -87,10 +87,12 @@ export class ButtonDisplayComponent implements OnInit {
       const resultValue = this.numberValues[this.combinationString];
       this.resultArray.push(resultValue);
       this.resultString = this.resultArray.join('');
+      console.log(this.resultString);
     } else {
       const resultValue = this.letterValues[this.combinationString];
       this.resultArray.push(resultValue);
       this.resultString = this.resultArray.join('');
+
     }
 
     this.resetResult();
