@@ -3,7 +3,7 @@ import type { User } from '../../shared/models/user.model';
 import type { Translation } from '../../shared/models/translation.model'
 const {Schema, model} = mongoose
 
-const translationSchema = new mongoose.Schema({
+const translationSchema = new Schema({
     message: String
 })
 

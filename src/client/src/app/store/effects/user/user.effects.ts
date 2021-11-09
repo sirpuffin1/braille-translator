@@ -19,6 +19,9 @@ import {
   updateUser,
   updateUserFailure,
   updateUserSuccess,
+  addTranslation,
+  addTranslationFailure,
+  addTranslationSuccess
 } from '../../actions/user/user.actions';
 
 @Injectable()
@@ -81,7 +84,18 @@ export class UserEffects {
       )
     )
   )
-);
+)
+ addTranslation$ = createEffect(() =>
+ this.actions$.pipe(
+   ofType(addTranslation),
+   mergeMap((action) =>
+   this.userService.addTranslation(action.data).pipe(
+     map((data) => addTranslationSuccess({ data })),
+     catchError((error) => of(addTranslationFailure({error})))
+   ))
+ )
+ )
+
 
   constructor(private actions$: Actions, private userService: UserService) {}
 }

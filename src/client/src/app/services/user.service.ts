@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
 import { User } from '../../../../shared/models/user.model';
+import { Translation } from '../../../../shared/models/translation.model'
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,12 @@ export class UserService {
   }
   createUser(user: User) {
     return this.api
-      .post<{ data: User }>('create-user', user)
+      .post<{ data: User }, User>('create-user', user)
       .pipe(map((res) => res.data));
   }
-  login(user: Partial<User>) {
+  login(user: User) {
     return this.api
-      .post<{ data: User }>('login', user)
+      .post<{ data: User }, User>('login', user)
       .pipe(map((res) => res.data));
   }
   updateUser(user: User) {
@@ -36,5 +37,9 @@ export class UserService {
 
   selectUser(id: string) {
     this.selectedUserId = id;
+  }
+
+  addTranslation(translation: Translation) {
+    return this.api.post<{data: User}, Translation>('add-translation', translation).pipe(map(res => res.data))
   }
 }

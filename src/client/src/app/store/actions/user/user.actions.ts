@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Error } from 'mongoose';
 import { User } from '../../../../../../shared/models/user.model';
+import { Translation } from '../../../../../../shared/models/translation.model';
 
 export const loadUsers = createAction(
   '[User] Load Users'
@@ -68,7 +69,7 @@ export const deleteUserFailure = createAction(
 
 export const loginUser = createAction(
   '[User] Login User',
-  props<{data: Partial<User>}>()
+  props<{data: User}>()
 );
 
 export const loginUserSuccess = createAction(
@@ -78,5 +79,20 @@ export const loginUserSuccess = createAction(
 
 export const loginUserFailure = createAction(
   '[User] Login User Failure',
+  props<{ error: Error }>()
+);
+
+export const addTranslation = createAction (
+  '[User.Translation] Add User Translation',
+  props<{ data: Translation }>()
+)
+
+export const addTranslationSuccess = createAction(
+  '[User] Add Translation Success',
+  props<{ data: User }>()
+);
+
+export const addTranslationFailure = createAction(
+  '[User] Add Translation Failure',
   props<{ error: Error }>()
 );

@@ -101,6 +101,14 @@ app.post("/create-post", function (req, res) {
     });
 });
 
+app.post('/api/add-translation', function(req, res) {
+  const {message} = req.body;
+  UserModel.findByIdAndUpdate(req.body._id, {$push: {comments: {message}}}, {new: true}).then((data) => {
+    console.log(data);
+    res.json({data})
+  })
+})
+
 app.delete("/delete-user/:id", function (req, res) {
   const _id = req.params.id;
   UserModel.findByIdAndDelete(_id).then((data) => {
