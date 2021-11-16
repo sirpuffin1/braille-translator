@@ -1,19 +1,19 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from '../../../../../../shared/models/user.model';
-import { addTranslationSuccess, createUserSuccess, deleteUserSuccess, loadUsers, loadUsersSuccess, selectUserAction, updateUserSuccess } from '../../actions/user/user.actions';
+import { addTranslationSuccess, createUserSuccess, deleteUserSuccess, loadUsers, loadUsersSuccess, loginUserSuccess, selectUserAction, updateUserSuccess } from '../../actions/user/user.actions';
 import { Translation } from '../../../../../../shared/models/translation.model';
 
 export const userFeatureKey = 'user';
 
 export interface State {
   users: User[];
-  selectedUser: User | null;
+  loggedInUser: User | null;
 
 }
 
 export const initialState: State = {
   users: [],
-  selectedUser: null,
+  loggedInUser: null,
 };
 
 
@@ -23,7 +23,7 @@ export const reducer = createReducer(
     return { ...state, users: action.data }
   }),
   on(selectUserAction, (state, action) => {
-    return { ...state, selectedUser: action.data }
+    return { ...state, loggedInUser: action.data }
   }),
   on(updateUserSuccess, (state, action) => {
     return {...state, users: state.users.map(user => user._id === action.data._id ? action.data : user)}
@@ -37,9 +37,11 @@ export const reducer = createReducer(
     return {...state, users}
   }),
   on(addTranslationSuccess, (state, action) => {
-    const users = [...state.users];
-    users.push(action.data);
-    return {...state, users}
+    return {...state, loggedInUser: action.data}
+  }),
+  on(loginUserSuccess, (state, action) => {
+
+    return {...state, loggedInUser: action.data}
   })
 );
 

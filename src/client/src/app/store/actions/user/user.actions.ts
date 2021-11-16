@@ -82,9 +82,24 @@ export const loginUserFailure = createAction(
   props<{ error: Error }>()
 );
 
+export const logoutUser = createAction(
+  '[User] Logout User',
+  props<{data: User}>()
+)
+
+export const logoutUserSuccess = createAction(
+  '[User] Logout User Success',
+  props<{data: User}>()
+)
+
+export const logoutUserFailure = createAction(
+  '[User] Logout User Failure',
+  props<{data: User}>()
+)
+
 export const addTranslation = createAction (
   '[User.Translation] Add User Translation',
-  props<{ data: Translation }>()
+  props<{ data: {_id: string, message: string} }>()
 )
 
 export const addTranslationSuccess = createAction(

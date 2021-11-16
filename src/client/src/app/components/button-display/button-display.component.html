@@ -57,13 +57,16 @@
 
 <div *ngIf="resultString">
   <div class="card-header">Translation</div>
+  <br>
 <p>{{resultString}}</p>
   <span  class="cardo" *ngFor="let stringValue of resultArray">
     <div><img class="brailles" src="./assets/images/{{stringValue}}.png"></div>
 
   </span>
   <br>
-  <button mat-button class="mats">Save</button>
+  <ng-container *ngIf="loggedInUser$ | async as user">
+  <button mat-button class="mats" (click)="addTranslation(user, resultString)">Save</button>
+</ng-container>
   <button mat-button class="mats"(click)="clearResultString()">X</button>
 </div>
 

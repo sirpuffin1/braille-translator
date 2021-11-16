@@ -101,9 +101,9 @@ app.post("/create-post", function (req, res) {
     });
 });
 
-app.post('/api/add-translation', function(req, res) {
+app.post('/add-translation', function(req, res) {
   const {message} = req.body;
-  UserModel.findByIdAndUpdate(req.body._id, {$push: {comments: {message}}}, {new: true}).then((data) => {
+  UserModel.findByIdAndUpdate(req.body._id, {$push: {translations: {message}}}, {new: true}).then((data) => {
     console.log(data);
     res.json({data})
   })
@@ -139,8 +139,9 @@ app.put("/update-user/:id", function (req, res) {
 
 app.post("/login", function (req, res) {
   const { email, password } = req.body;
-
-  UserModel.findOne({ email })
+console.log(email)
+console.log(password)
+  UserModel.findOne({ email }).lean()
     .then((user) => {
         console.log(user);
       
@@ -152,7 +153,7 @@ app.post("/login", function (req, res) {
               httpOnly: true,
               maxAge: 60 * 1000,
           })
-          res.json({message: 'Successfully Logged In'})
+          res.json({data:  user})
         } else {
           res.sendStatus(403);
         }

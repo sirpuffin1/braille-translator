@@ -22,7 +22,8 @@ import { ButtonDisplayComponent } from './components/button-display/button-displ
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card'
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
+import { UserLogoutComponent } from './components/user-logout/user-logout.component'
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -36,7 +37,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     UserLoginComponent,
     PageLoginComponent,
     ButtonDisplayComponent,
-    PageHomeComponent
+    PageHomeComponent,
+    UserLogoutComponent
   ],
   imports: [
     BrowserModule,

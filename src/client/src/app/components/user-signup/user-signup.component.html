@@ -2,7 +2,7 @@
     <input type="text" formControlName='name' placeholder="name">
     <input type="text" formControlName='email' placeholder="email">
     <input type="text" formControlName='password' placeholder="password">
-    <button (click)='postUser(selectedUser)' [disabled]='addUser.invalid'>{{(selectedUser) ? 'Update User' : 'Add User'}}</button>
+    <button (click)='postUser(loggedInUser)' [disabled]='addUser.invalid'>{{(loggedInUser) ? 'Update User' : 'Add User'}}</button>
 
 </form>
 

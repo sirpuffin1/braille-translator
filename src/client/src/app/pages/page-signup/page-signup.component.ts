@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { selectedUserSelector } from 'src/app/store/selectors/user/user.selectors';
+import { loggedInUserSelector } from 'src/app/store/selectors/user/user.selectors';
 import { User } from '../../../../../shared/models/user.model';
 
 @Component({
@@ -11,12 +11,12 @@ import { User } from '../../../../../shared/models/user.model';
   styleUrls: ['./page-signup.component.scss']
 })
 export class PageSignupComponent implements OnInit {
-  selectedUser$: Observable<User | null>;
+  loggedInUser$: Observable<User | null>;
   constructor(
     private store: Store<AppState>,
   ) {
 
-    this.selectedUser$ = this.store.select(selectedUserSelector);
+    this.loggedInUser$ = this.store.select(loggedInUserSelector);
   }
 
   ngOnInit(): void {

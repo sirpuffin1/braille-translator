@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
+import { addTranslation } from 'src/app/store/actions/user/user.actions';
+import { Store } from '@ngrx/store';
+import { Translation } from '../../../../../shared/models/translation.model';
+import { User } from '../../../../../shared/models/user.model';
+import { loggedInUserSelector } from 'src/app/store/selectors/user/user.selectors';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/store';
 @Component({
   selector: 'app-button-display',
   templateUrl: './button-display.component.html',
@@ -7,7 +13,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonDisplayComponent implements OnInit {
 
-  constructor() { }
+  public loggedInUser$: Observable<User | null>;
+
+  constructor(private store: Store<AppState>) {
+    this.loggedInUser$ = this.store.select(loggedInUserSelector)
+  }
 
   ngOnInit(): void {
   }
@@ -120,5 +130,11 @@ export class ButtonDisplayComponent implements OnInit {
       this.translationType = 'Numbers';
     }
   }
+
+  addTranslation(user: User, message: string) {
+    this.store.dispatch(addTranslation({data: {_id: `${user._id}`, message}}))
+  }
+
+
 
 }

@@ -1,11 +1,11 @@
 
 <ol>
-    <li [ngStyle]= "{ color: checkSelected(selectedUser, user) }" *ngFor='let user of users'>
+    <li [ngStyle]= "{ color: checkSelected(loggedInUser, user) }" *ngFor='let user of users'>
         name: {{user.name}} <br>
         email: {{user.email}} <br>
         id: {{user._id}}
         <button (click) = "deleteUser(user)">Delete</button>
-        <button (click) = "selectUser(user, selectedUser)">Select & Update</button>
+        <button (click) = "selectUser(user, loggedInUser)">Select & Update</button>
         <br> <br>
     </li>
 </ol>

@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
 import { User } from '../../../../shared/models/user.model';
 import { Translation } from '../../../../shared/models/translation.model'
+import { userInfo } from 'os';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class UserService {
     this.selectedUserId = id;
   }
 
-  addTranslation(translation: Translation) {
-    return this.api.post<{data: User}, Translation>('add-translation', translation).pipe(map(res => res.data))
+  addTranslation(payload: {_id: string, message: string}) {
+    return this.api.post<{data: User}, Translation>('add-translation', payload).pipe(map(res => res.data))
   }
 }

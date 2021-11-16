@@ -22,7 +22,7 @@ import { User } from '../../../../../shared/models/user.model';
 })
 export class UserSignupComponent implements OnInit, OnChanges {
   addUser: FormGroup;
-  @Input() selectedUser: User | null = null;
+  @Input() loggedInUser: User | null = null;
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.addUser = this.fb.group({
       name: ['', Validators.required],
@@ -40,19 +40,19 @@ export class UserSignupComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes?.selectedUser?.currentValue) {
-      const user = changes?.selectedUser?.currentValue;
+    if (changes?.loggedInUser?.currentValue) {
+      const user = changes?.loggedInUser?.currentValue;
       this.addUser.get('name')?.setValue(user.name);
       this.addUser.get('email')?.setValue(user.email);
       this.addUser.updateValueAndValidity();
     }
   }
 
-  postUser(selectedUser: User | null) {
-    !selectedUser
+  postUser(loggedInUser: User | null) {
+    !loggedInUser
       ? this.store.dispatch(createUser({ data: this.addUser.value }))
       : this.store.dispatch(
-          updateUser({ data: { ...selectedUser, ...this.addUser.value } })
+          updateUser({ data: { ...loggedInUser, ...this.addUser.value } })
         );
     this.addUser.reset();
   }
