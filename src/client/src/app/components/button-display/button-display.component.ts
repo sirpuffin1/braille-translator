@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { addTranslation } from 'src/app/store/actions/user/user.actions';
+import { addTranslation, logoutUser } from 'src/app/store/actions/user/user.actions';
 import { Store } from '@ngrx/store';
 import { Translation } from '../../../../../shared/models/translation.model';
 import { User } from '../../../../../shared/models/user.model';
@@ -135,6 +135,8 @@ export class ButtonDisplayComponent implements OnInit {
     this.store.dispatch(addTranslation({data: {_id: `${user._id}`, message}}))
   }
 
-
+  logoutUser(){
+    this.store.dispatch(logoutUser())
+  }
 
 }

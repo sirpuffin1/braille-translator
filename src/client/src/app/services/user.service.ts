@@ -26,6 +26,11 @@ export class UserService {
       .post<{ data: User }, User>('login', user)
       .pipe(map((res) => res.data));
   }
+
+  logout() {
+    return this.api
+    .get('logout')
+  }
   updateUser(user: User) {
     return this.api.put<User>('update-user/' + user._id, user);
   }

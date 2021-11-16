@@ -164,7 +164,7 @@ console.log(password)
     });
 });
 
-app.get('logout', function(req, res){
+app.get('/logout', function(req, res){
     res.cookie('jwt', '', {
         httpOnly: true,
         maxAge: 0,
