@@ -1,9 +1,25 @@
-<nav>
-<a routerLink="/">Home</a>
-<a class="rightSide" routerLink="/signup">Sign Up</a>
-<a class="rightSide" routerLink="/login">Login</a>
-<a routerLink="/users">Users</a>
-</nav>
-<hr>
+<nb-layout>
 
-<router-outlet></router-outlet>
+  <nb-layout-header fixed>
+  <!-- Insert header here -->
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <nav>
+    <a routerLink="/">Home</a>
+    <a class="rightSide" routerLink="/signup">Sign Up</a>
+    <a class="rightSide" routerLink="/login">Login</a>
+    <a routerLink="/users">Users</a>
+    <a routerLink="/translations">Translations</a>
+    </nav>
+    <hr>
+    
+    <router-outlet></router-outlet>
+    
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+  <!-- Insert footer here -->
+  </nb-layout-footer>
+
+</nb-layout>

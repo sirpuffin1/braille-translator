@@ -32,6 +32,7 @@ export class ButtonDisplayComponent implements OnInit {
 
   combinationArray: string[] = [];
   resultArray: string[] = [];
+  imagesArray: string[] = []
 
   numberValues: any = {
     '234': 0,
@@ -78,6 +79,7 @@ export class ButtonDisplayComponent implements OnInit {
   resultString = '';
   translationType = 'Numbers';
 
+
   pushToArray(string: string) {
     // let toggley = "toggleClass" + string
     // console.log(toggley)
@@ -98,13 +100,14 @@ export class ButtonDisplayComponent implements OnInit {
       this.resultArray.push(resultValue);
       this.resultString = this.resultArray.join('');
       console.log(this.resultString);
+
     } else {
       const resultValue = this.letterValues[this.combinationString];
       this.resultArray.push(resultValue);
       this.resultString = this.resultArray.join('');
+      console.log(this.resultString)
 
     }
-
     this.resetResult();
   }
 

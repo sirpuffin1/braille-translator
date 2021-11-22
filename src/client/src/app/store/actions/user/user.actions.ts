@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Error } from 'mongoose';
 import { User } from '../../../../../../shared/models/user.model';
 import { Translation } from '../../../../../../shared/models/translation.model';
+import { Observable } from 'rxjs';
 
 export const loadUsers = createAction(
   '[User] Load Users'

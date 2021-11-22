@@ -1,7 +1,7 @@
 
 <img style="float: right;" src="https://www.dcode.fr/tools/braille/images/braille.png">
-<button (click)="logoutUser()">logout</button>
-<button
+
+<button id="braille"
   (click)="toggleClass1 = !toggleClass1"
   [ngClass]="{ selected: toggleClass1 }"
   (click)="pushToArray('1')"
@@ -11,6 +11,7 @@
 </button>
 
 <button
+  id="braille"
   (click)="toggleClass2 = !toggleClass2"
   [ngClass]="{ selected: toggleClass2 }"
   (click)="pushToArray('2')"
@@ -19,6 +20,7 @@
 </button>
 <br />
 <button
+  id="braille"
   (click)="toggleClass3 = !toggleClass3"
   [ngClass]="{ selected: toggleClass3 }"
   (click)="pushToArray('3')"
@@ -26,6 +28,7 @@
 
 </button>
 <button
+  id="braille"
   (click)="toggleClass4 = !toggleClass4"
   [ngClass]="{ selected: toggleClass4 }"
   (click)="pushToArray('4')"
@@ -34,6 +37,7 @@
 </button>
 <br />
 <button
+  id="braille"
   (click)="toggleClass5 = !toggleClass5"
   [ngClass]="{ selected: toggleClass5 }"
   (click)="pushToArray('5')"
@@ -41,6 +45,7 @@
 
 </button>
 <button
+  id="braille"
   (click)="toggleClass6 = !toggleClass6"
   [ngClass]="{ selected: toggleClass6 }"
   (click)="pushToArray('6')"
@@ -49,25 +54,31 @@
 
 </button>
 <br>
-<button (click)="displayResult()">submit</button>
-<button (click)="switchTranslationType()">{{translationType}}</button>
+<button nbButton shape="round" size="large" outline status="warning" (click)="displayResult()">submit</button>
+<button nbButton shape="round" size="large" outline status="warning"(click)="switchTranslationType()">{{translationType}}</button>
 
 
 <br />
 
 
 <div *ngIf="resultString">
-  <div class="card-header">Translation</div>
-  <br>
-<p>{{resultString}}</p>
-  <span  class="cardo" *ngFor="let stringValue of resultArray">
+  <nb-card>
+    <nb-card-header>Translation</nb-card-header>
+    <nb-card-body>
+      <p>{{resultString}}</p>
+  <span  class="cardo" *ngFor="let stringValue of resultString.split('')">
     <div><img class="brailles" src="./assets/images/{{stringValue}}.png"></div>
 
   </span>
-  <br>
-  <ng-container *ngIf="loggedInUser$ | async as user">
-  <button mat-button class="mats" (click)="addTranslation(user, resultString)">Save</button>
-</ng-container>
-  <button mat-button class="mats"(click)="clearResultString()">X</button>
+    </nb-card-body>
+    <nb-card-footer>
+      <ng-container *ngIf="loggedInUser$ | async as user">
+        <button nbButton size="giant" (click)="addTranslation(user, resultString)">Save</button>
+      </ng-container>
+        <button nbButton size="giant" (click)="clearResultString()">X</button>
+    </nb-card-footer>
+  </nb-card>
+
+
 </div>
 

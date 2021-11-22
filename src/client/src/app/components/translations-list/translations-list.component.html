@@ -1,0 +1,25 @@
+<div *ngIf="translations$">
+  <div *ngFor="let translation of translations$ | async">
+    <nb-flip-card>
+
+      <nb-card-front>
+        <nb-card status="warning">
+          <nb-card-header>Text Translation</nb-card-header>
+          <nb-card-body>
+            {{translation.message}}
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+      <nb-card-back>
+        <nb-card>
+          <nb-card-body>
+            <span  class="cardo" *ngFor="let stringValue of translation.message.split('')">
+              <div><img class="brailles" src="./assets/images/{{stringValue}}.png"></div>
+
+            </span>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-flip-card>
+  </div>
+</div>

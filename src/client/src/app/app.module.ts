@@ -23,7 +23,10 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button';
-import { UserLogoutComponent } from './components/user-logout/user-logout.component'
+import { UserLogoutComponent } from './components/user-logout/user-logout.component';
+import { TranslationsListComponent } from './components/translations-list/translations-list.component';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons'
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -38,7 +41,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PageLoginComponent,
     ButtonDisplayComponent,
     PageHomeComponent,
-    UserLogoutComponent
+    UserLogoutComponent,
+    TranslationsListComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatCardModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbCardModule,
+    NbButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

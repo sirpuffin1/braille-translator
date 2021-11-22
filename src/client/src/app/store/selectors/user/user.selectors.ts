@@ -1,6 +1,9 @@
+import { state } from '@angular/animations';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppState } from '../..';
+import { Translation } from '../../../../../../shared/models/translation.model';
 import * as fromUser from '../../reducers/user/user.reducer';
+
 
 const userFeatureSelector = createFeatureSelector<AppState, fromUser.State>(fromUser.userFeatureKey);
 
@@ -14,5 +17,8 @@ export const loggedInUserSelector = createSelector(
   (state) => state.loggedInUser
 )
 
-
+export const translationsSelector = createSelector(
+  loggedInUserSelector,
+  (state) => state?.translations as Translation[]
+)
 
