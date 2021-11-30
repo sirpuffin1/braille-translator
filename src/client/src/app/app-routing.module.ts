@@ -11,7 +11,6 @@ const routes: Routes = [
   {path: 'signup', component: PageSignupComponent},
   {path: 'login', component: PageLoginComponent},
   {path: '', component: PageHomeComponent},
-  {path: 'users', component: PageUsersComponent, canActivate: [AuthGuard], resolve: []},
   {path: 'translations', component: TranslationsListComponent, canActivate: [AuthGuard], resolve: []}
 ];
 

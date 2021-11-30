@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../../../../shared/models/user.model';
 import { Translation } from '../../../../shared/models/translation.model'
 import { userInfo } from 'os';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { userInfo } from 'os';
 export class UserService {
   selectedUserId = '';
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private router: Router) {}
 
   getUsers() {
     return this.api.get<{ data: User[] }>('users').pipe(map((res) => res.data));
@@ -30,6 +31,7 @@ export class UserService {
   }
 
   logout() {
+    this.router.navigate(['/login'])
     return this.api
     .get('logout')
   }
@@ -41,6 +43,11 @@ export class UserService {
     return this.api
       .delete<{ data: User }>('delete-user/' + user._id)
       .pipe(map((res) => res.data));
+  }
+
+  deleteTranslation(payload: {_id: string}) {
+    return this.api
+    .delete<User>('delete-translation/' + payload._id)
   }
 
   selectUser(id: string) {

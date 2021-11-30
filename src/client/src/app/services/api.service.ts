@@ -22,10 +22,14 @@ export class ApiService {
   }
 
   delete<T>(resourceName: string) {
-    return this.http.delete<T>(this.baseUrl + resourceName);
+    return this.http.delete<T>(this.baseUrl + resourceName, {
+      withCredentials: true
+    });
   }
 
   put<T>(resourceName: string, data: Postable) {
-    return this.http.put<T>(this.baseUrl + resourceName, data);
+    return this.http.put<T>(this.baseUrl + resourceName, data, {
+      withCredentials: true
+    });
   }
 }

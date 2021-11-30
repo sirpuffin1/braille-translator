@@ -14,6 +14,7 @@ import {
   updateUser,
 } from 'src/app/store/actions/user/user.actions';
 import { User } from '../../../../../shared/models/user.model';
+import { NbIconModule } from '@nebular/theme';
 
 @Component({
   selector: 'app-user-login',
@@ -34,10 +35,23 @@ constructor(private fb: FormBuilder, private store: Store<AppState>){
     ],
   })
 }
+
   ngOnInit(): void {
   }
   login() {
     this.store.dispatch(loginUser({ data: this.userLogin.value
     }))
   }
+
+  showPassword= false;
+getInputType() {
+  if(this.showPassword) {
+    return 'text';
+  }
+  return 'password';
+}
+
+toggleShowPassword() {
+  this.showPassword = !this.showPassword
+}
 }

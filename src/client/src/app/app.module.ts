@@ -25,7 +25,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button';
 import { UserLogoutComponent } from './components/user-logout/user-logout.component';
 import { TranslationsListComponent } from './components/translations-list/translations-list.component';
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, NbInputModule, NbIconModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons'
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
@@ -62,7 +62,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     NbLayoutModule,
     NbEvaIconsModule,
     NbCardModule,
-    NbButtonModule
+    NbButtonModule,
+    NbInputModule,
+    NbEvaIconsModule,
+    NbIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

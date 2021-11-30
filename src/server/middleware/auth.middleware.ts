@@ -12,7 +12,10 @@ function authHandle(req: AuthRequest, res: Response, next: NextFunction) {
     cookie,
     process.env.ACCESS_TOKEN_SECRET as string,
     (err: any, result: any) => {
+      
       if (err) {
+        console.log(err);
+        console.log("hey")
         return res.sendStatus(403);
       }
       if (result) {

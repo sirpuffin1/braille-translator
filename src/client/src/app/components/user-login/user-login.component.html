@@ -2,10 +2,18 @@
 <div>
   <h1>Login Page :)</h1>
 <form [formGroup] = 'userLogin'>
-  <input type="text" formControlName='email' placeholder="email">
+
+  <input type="text" formControlName='email' placeholder="email" nbInput status="warning">
   <br>
-  <input type="text" formControlName='password' placeholder="password">
+
+  <input [type]="getInputType()" formControlName='password' placeholder="password" nbInput status="warning">
+  <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+    <nb-icon  status="warning" [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+      pack="eva"
+      [attr.aria-label]="showPassword ? 'hide password' : 'show password'" ></nb-icon>
+  </button>
+
   <br>
-  <button (click)="login()">Login</button>
+  <button nbButton status="warning"(click)="login()">Login</button>
 </form>
 </div>

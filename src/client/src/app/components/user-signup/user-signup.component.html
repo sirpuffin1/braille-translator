@@ -1,9 +1,15 @@
+<div>
+  <h2>Sign up :)</h2>
 <form [formGroup] = 'addUser'>
-    <input type="text" formControlName='name' placeholder="name">
-    <input type="text" formControlName='email' placeholder="email">
-    <input type="text" formControlName='password' placeholder="password">
-    <button (click)='postUser(loggedInUser)' [disabled]='addUser.invalid'>{{(loggedInUser) ? 'Update User' : 'Add User'}}</button>
+    <input type="text" formControlName='name' placeholder="name" nbInput status="warning">
+    <br>
+    <input type="text" formControlName='email' placeholder="email" nbInput status="warning">
+    <br>
+    <input type="text" formControlName='password' placeholder="password" nbInput status="warning">
+    <br>
+    <button nbButton status="warning" fullWidth (click)='postUser(loggedInUser)' [disabled]='addUser.invalid'>{{(loggedInUser) ? 'Sign up' : 'Add User'}}</button>
 
 </form>
 
 
+</div>

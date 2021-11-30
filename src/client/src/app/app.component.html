@@ -1,21 +1,26 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
-  <!-- Insert header here -->
-  </nb-layout-header>
+
 
   <nb-layout-column>
-    <nav>
+
+    <nav *ngIf="loggedInUser$ | async as user; else elseTemplate">
     <a routerLink="/">Home</a>
-    <a class="rightSide" routerLink="/signup">Sign Up</a>
-    <a class="rightSide" routerLink="/login">Login</a>
-    <a routerLink="/users">Users</a>
     <a routerLink="/translations">Translations</a>
+    <button *ngIf="loggedInUser$ | async as user"nbButton (click)="logoutUser()" status="warning" size="small">Log Out</button>
     </nav>
+    <ng-template #elseTemplate>
+      <nav>
+      <a routerLink="/">Home</a>
+      <a routerLink="/translations">Translations</a>
+      <a class="rightSide" routerLink="/signup">Sign Up</a>
+    <a class="rightSide" routerLink="/login">Login</a>
+  </nav>
+    </ng-template>
     <hr>
-    
+
     <router-outlet></router-outlet>
-    
+
   </nb-layout-column>
 
   <nb-layout-footer fixed>
@@ -23,3 +28,4 @@
   </nb-layout-footer>
 
 </nb-layout>
+

@@ -117,25 +117,7 @@ app.delete("/delete-user/:id", function (req, res) {
   });
 });
 
-app.put("/update-user/:id", function (req, res) {
-  console.log("Update user");
-  UserModel.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: { name: req.body.name, email: req.body.email },
-    },
-    {
-      new: true,
-    },
-    function (err, updateUser) {
-      if (err) {
-        res.send("Error updating user");
-      } else {
-        res.json(updateUser);
-      }
-    }
-  );
-});
+
 
 app.post("/login", function (req, res) {
   const { email, password } = req.body;
@@ -151,7 +133,7 @@ console.log(password)
           const accessToken = jwt.sign({user}, access_secret)
           res.cookie('jwt', accessToken, {
               httpOnly: true,
-              maxAge: 60 * 1000,
+              maxAge: 60 * 1000 * 60,
           })
           res.json({data:  user})
         } else {
@@ -172,9 +154,31 @@ app.get('/logout', function(req, res){
     res.json({message: 'Successfully Logged Out'})
 });
 
-app.get('/check-login', authHandler, (req, res) => {
+app.get('/check-login', authHandler, (req: any, res) => {
   res.json({message: 'yes'});
+  console.log(req.user)
 })
+
+app.delete("/delete-translation/:id", authHandler, (req:any, res) => {
+  console.log("Delete Translation", req.body, req.user._id);
+
+  UserModel.findByIdAndUpdate(
+      new mongoose.Types.ObjectId(req.user._id) ,{
+       $pull: { translations: {_id: new mongoose.Types.ObjectId(req.params.id)}}  
+    },
+    {
+      new: true,
+    },
+    function (err, updateUser) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(401)
+      } else {
+        res.json(updateUser);
+      }
+    }
+  );
+});
 
 server.listen(PORT, function () {
   console.log(`starting at localhost http://localhost:${PORT}`);

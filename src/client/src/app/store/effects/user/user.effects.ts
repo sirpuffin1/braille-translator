@@ -26,6 +26,9 @@ import {
   addTranslation,
   addTranslationFailure,
   addTranslationSuccess,
+  deleteTranslation,
+  deleteTranslationSuccess,
+  deleteTranslationFailure,
 } from '../../actions/user/user.actions';
 
 @Injectable()
@@ -77,6 +80,18 @@ export class UserEffects {
       )
     )
   );
+
+  deleteTranslation$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(deleteTranslation),
+    mergeMap((action) =>
+      this.userService.deleteTranslation(action.data).pipe(
+        map((data) => deleteTranslationSuccess({ data })),
+        catchError((error) => of(deleteTranslationFailure({ error })))
+      )
+    )
+  )
+);
 
   loginUsers$ = createEffect(() =>
   this.actions$.pipe(

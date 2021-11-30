@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { translationsSelector } from 'src/app/store/selectors/user/user.selectors';
 import { AppState } from 'src/app/store';
 import { NbCardModule } from '@nebular/theme';
+import { deleteTranslation } from 'src/app/store/actions/user/user.actions';
 
 @Component({
   selector: 'app-translations-list',
@@ -20,6 +21,11 @@ export class TranslationsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  deleteTranslation(id: string){
+    this.store.dispatch(deleteTranslation({data: {_id: id}}))
+    console.log(id)
   }
 
 }

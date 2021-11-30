@@ -68,6 +68,21 @@ export const deleteUserFailure = createAction(
   props<{ error: Error }>()
 );
 
+export const deleteTranslation = createAction(
+  '[User.Translation] Delete User Translation',
+  props<{data: {_id: string}}>()
+);
+
+export const deleteTranslationSuccess = createAction(
+  '[User.Translation] Delete User Translation Failure',
+  props<{data: User}>()
+)
+
+export const deleteTranslationFailure = createAction(
+  '[User.Translation] Delete User Translation Failure',
+  props<{error: Error}>()
+)
+
 export const loginUser = createAction(
   '[User] Login User',
   props<{data: User}>()
