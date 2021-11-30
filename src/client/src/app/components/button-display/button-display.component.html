@@ -73,7 +73,7 @@
     </nb-card-body>
     <nb-card-footer>
       <ng-container *ngIf="loggedInUser$ | async as user">
-        <button nbButton size="giant" (click)="addTranslation(user, resultString)">Save</button>
+        <button nbButton size="giant" routerLink="/translations" (click)="addTranslation(user, resultString)">Save</button>
       </ng-container>
         <button nbButton size="giant" (click)="clearResultString()">X</button>
     </nb-card-footer>

@@ -1,3 +1,6 @@
+<h1 *ngIf="!translations$">
+  You need to log in.
+</h1>
 <div *ngIf="translations$">
   <div *ngFor="let translation of translations$ | async">
     <nb-flip-card>

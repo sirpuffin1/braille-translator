@@ -18,7 +18,11 @@ export const loggedInUserSelector = createSelector(
 )
 
 export const translationsSelector = createSelector(
-  loggedInUserSelector,
-  (state) => state?.translations as Translation[]
+  userFeatureSelector,
+  (state) => state.loggedInUser?.translations as Translation[]
 )
+
+// export const deletedTranslationSelector = createSelector(
+
+// )
 

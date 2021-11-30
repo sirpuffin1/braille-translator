@@ -24,5 +24,6 @@ export class AppComponent {
   }
   logoutUser() {
     this.store.dispatch(logoutUser())
+    location.reload()
   }
 }

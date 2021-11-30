@@ -74,7 +74,7 @@ export const deleteTranslation = createAction(
 );
 
 export const deleteTranslationSuccess = createAction(
-  '[User.Translation] Delete User Translation Failure',
+  '[User.Translation] Delete User Translation Success',
   props<{data: User}>()
 )
 
