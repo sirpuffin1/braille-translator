@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import cors from "cors";
+import path from 'path';
 import { PostModel } from "./schemas/post.schema.js";
 import { UserModel } from "./schemas/user.schema.js";
 import mongoose from "mongoose";
@@ -11,6 +12,8 @@ import http from 'http';
 import dotenv from "dotenv";
 import { authHandler } from "./middleware/auth.middleware.js";
 dotenv.config();
+const __dirname = path.resolve();
+const router = express.Router();
 const access_secret = process.env.ACCESS_TOKEN_SECRET;
 console.log(access_secret);
 const app = express();
@@ -26,16 +29,19 @@ mongoose
     console.log("Connected to DB Successfully");
 })
     .catch((err) => console.log("Failed to Connect to DB", err));
+app.use('/api', router);
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
     origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:3501', 'http://localhost:8080']
 }));
 app.use(express.json());
-app.get("/", function (req, res) {
+const clientPath = path.join(__dirname, '/dist/client');
+app.use(express.static(clientPath));
+router.get("/", function (req, res) {
     res.json({ message: "test" });
 });
-app.get("/posts", function (req, res) {
+router.get("/posts", function (req, res) {
     PostModel.find()
         .then((data) => res.json({ data }))
         .catch((err) => {
@@ -43,7 +49,7 @@ app.get("/posts", function (req, res) {
         res.json({ errors: err });
     });
 });
-app.get("/users", authHandler, function (req, res) {
+router.get("/users", authHandler, function (req, res) {
     UserModel.find({}, '-password')
         .then((data) => res.json({ data }))
         .catch((err) => {
@@ -51,7 +57,7 @@ app.get("/users", authHandler, function (req, res) {
         res.json({ errors: err });
     });
 });
-app.post("/create-user", function (req, res) {
+router.post("/create-user", function (req, res) {
     const { name, email, password } = req.body;
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
@@ -72,7 +78,7 @@ app.post("/create-user", function (req, res) {
         });
     });
 });
-app.post("/create-post", function (req, res) {
+router.post("/create-post", function (req, res) {
     const { title, body } = req.body;
     const post = new PostModel({
         title,
@@ -88,21 +94,21 @@ app.post("/create-post", function (req, res) {
         res.json({ errors: err });
     });
 });
-app.post('/add-translation', function (req, res) {
+router.post('/add-translation', function (req, res) {
     const { message } = req.body;
     UserModel.findByIdAndUpdate(req.body._id, { $push: { translations: { message } } }, { new: true }).then((data) => {
         console.log(data);
         res.json({ data });
     });
 });
-app.delete("/delete-user/:id", function (req, res) {
+router.delete("/delete-user/:id", function (req, res) {
     const _id = req.params.id;
     UserModel.findByIdAndDelete(_id).then((data) => {
         console.log(data);
         res.json({ data });
     });
 });
-app.post("/login", function (req, res) {
+router.post("/login", function (req, res) {
     const { email, password } = req.body;
     console.log(email);
     console.log(password);
@@ -128,18 +134,18 @@ app.post("/login", function (req, res) {
         return res.sendStatus(404);
     });
 });
-app.get('/logout', function (req, res) {
+router.get('/logout', function (req, res) {
     res.cookie('jwt', '', {
         httpOnly: true,
         maxAge: 0,
     });
     res.json({ message: 'Successfully Logged Out' });
 });
-app.get('/check-login', authHandler, (req, res) => {
+router.get('/check-login', authHandler, (req, res) => {
     res.json({ message: 'yes' });
     console.log(req.user);
 });
-app.delete("/delete-translation/:id", authHandler, (req, res) => {
+router.delete("/delete-translation/:id", authHandler, (req, res) => {
     console.log("Delete Translation", req.body, req.user._id);
     UserModel.findByIdAndUpdate(new mongoose.Types.ObjectId(req.user._id), {
         $pull: { translations: { _id: new mongoose.Types.ObjectId(req.params.id) } }
@@ -154,6 +160,11 @@ app.delete("/delete-translation/:id", authHandler, (req, res) => {
             res.json(updateUser);
         }
     });
+});
+app.all("*", function (req, res) {
+    const filePath = path.join(__dirname, '/dist/client/index.html');
+    console.log(filePath);
+    res.sendFile(filePath);
 });
 server.listen(PORT, function () {
     console.log(`starting at localhost http://localhost:${PORT}`);
