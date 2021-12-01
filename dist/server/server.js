@@ -29,15 +29,15 @@ mongoose
     console.log("Connected to DB Successfully");
 })
     .catch((err) => console.log("Failed to Connect to DB", err));
-app.use('/api', router);
+app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
     origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:3501', 'http://localhost:8080']
 }));
-app.use(express.json());
 const clientPath = path.join(__dirname, '/dist/client');
 app.use(express.static(clientPath));
+app.use('/api', router);
 router.get("/", function (req, res) {
     res.json({ message: "test" });
 });
