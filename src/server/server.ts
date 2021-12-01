@@ -24,7 +24,7 @@ const io = new socketIO.Server(server,  { cors: {
 const saltRounds = 10;
 
 
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 
 mongoose
   .connect(`${process.env.MONGO_URI}`)
