@@ -19,9 +19,9 @@ const io = new socketIO.Server(server, { cors: {
         origin: '*'
     } });
 const saltRounds = 10;
-const PORT = 3000;
+const PORT = process.env.port || 3000;
 mongoose
-    .connect("mongodb://localhost:27017/brailley")
+    .connect(`${process.env.MONGO_URI}`)
     .then(() => {
     console.log("Connected to DB Successfully");
 })
@@ -102,21 +102,6 @@ app.delete("/delete-user/:id", function (req, res) {
         res.json({ data });
     });
 });
-app.put("/delete-translation/:id", authHandler, function (req, res) {
-    console.log("Delete Translation");
-    UserModel.findByIdAndUpdate({ user: req.user._id }, {
-        $pull: { translations: req.params.id }
-    }, {
-        new: true,
-    }, function (err, updateUser) {
-        if (err) {
-            res.send("Error updating user");
-        }
-        else {
-            res.json(updateUser);
-        }
-    });
-});
 app.post("/login", function (req, res) {
     const { email, password } = req.body;
     console.log(email);
@@ -130,7 +115,7 @@ app.post("/login", function (req, res) {
                 const accessToken = jwt.sign({ user }, access_secret);
                 res.cookie('jwt', accessToken, {
                     httpOnly: true,
-                    maxAge: 60 * 1000,
+                    maxAge: 60 * 1000 * 60,
                 });
                 res.json({ data: user });
             }
@@ -152,6 +137,23 @@ app.get('/logout', function (req, res) {
 });
 app.get('/check-login', authHandler, (req, res) => {
     res.json({ message: 'yes' });
+    console.log(req.user);
+});
+app.delete("/delete-translation/:id", authHandler, (req, res) => {
+    console.log("Delete Translation", req.body, req.user._id);
+    UserModel.findByIdAndUpdate(new mongoose.Types.ObjectId(req.user._id), {
+        $pull: { translations: { _id: new mongoose.Types.ObjectId(req.params.id) } }
+    }, {
+        new: true,
+    }, function (err, updateUser) {
+        if (err) {
+            console.log(err);
+            res.sendStatus(401);
+        }
+        else {
+            res.json(updateUser);
+        }
+    });
 });
 server.listen(PORT, function () {
     console.log(`starting at localhost http://localhost:${PORT}`);

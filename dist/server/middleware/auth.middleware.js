@@ -6,6 +6,8 @@ function authHandle(req, res, next) {
     console.log("auth", cookie);
     jwt.verify(cookie, process.env.ACCESS_TOKEN_SECRET, (err, result) => {
         if (err) {
+            console.log(err);
+            console.log("hey");
             return res.sendStatus(403);
         }
         if (result) {
