@@ -14,7 +14,9 @@ import { authHandler } from "./middleware/auth.middleware.js";
 dotenv.config();
 
 const __dirname = path.resolve();
+
 const router = express.Router();
+
 const access_secret = process.env.ACCESS_TOKEN_SECRET as string;
 console.log(access_secret);
 const app = express();
@@ -49,6 +51,7 @@ app.use(cors({
 
 const clientPath = path.join(__dirname, '/dist/client');
 app.use(express.static(clientPath));
+
 app.use('/api', router)
 
 router.get("/", function (req, res) {

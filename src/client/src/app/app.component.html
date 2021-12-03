@@ -7,7 +7,7 @@
     <nav *ngIf="loggedInUser$ | async as user; else elseTemplate">
     <a routerLink="/">Home</a>
     <a routerLink="/translations">Translations</a>
-    <button *ngIf="loggedInUser$ | async as user"nbButton (click)="logoutUser()" status="warning" size="small">Log Out</button>
+    <button routerLink="/" *ngIf="loggedInUser$ | async as user"nbButton (click)="logoutUser()" status="warning" size="small">Log Out</button>
     </nav>
     <ng-template #elseTemplate>
       <nav>
