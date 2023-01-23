@@ -1,14 +1,8 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
-
-
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   
@@ -16,11 +10,11 @@
 <h3 align="center">Braille Translator</h3>
 
   <p align="center">
-   This is a full-stack application designed to allow users to freely translate any braille that they may encounter. It works through a keypad like button system, and is partnered with a chart for easier translations. Along with this functionality, users are also able to register an account, log in, and save translations for later. 
+  This project is a full-stack web application that leverages the latest web development technologies to provide a powerful Braille translation solution. Utilizing Angular framework for the front-end, and MongoDB, Express, and Node for the back-end, the application offers a user-friendly keypad-like input system that enables the efficient translation of Braille, with the added convenience of a built-in Braille translation chart. Moreover, the application allows users to create an account and sign in to save their translations, and features state management through NGRX and route guarding through authentication to ensure a secure user experience.
     <br />
     <br />
     <br />
-    <a href="https://braille-app.herokuapp.com/">View Demo</a>
+    <a href="https://braille-app.herokuapp.com/">View Live</a>
   </p>
 </div>
 
@@ -52,8 +46,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-<a href="https://ibb.co/q13d6wq"><img src="https://i.ibb.co/MNxsdLw/braille-App.jpg" alt="braille-App" border="0" /></a>
+<img src="https://i.ibb.co/MNxsdLw/braille-App.jpg" alt="braille-App" border="0" />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +108,6 @@ mongodb+srv://<USER>:<PASSWORD>@cluster0.m5dfb.mongodb.net/<DATABASE>?retryWrite
 <!-- MARKDOWN LINKS & IMAGES -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/angel-cruz-50304623b/
-[product-screenshot]: images/screenshot.png
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
 [MongoDB]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
